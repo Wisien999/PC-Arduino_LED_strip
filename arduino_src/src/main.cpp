@@ -1,3 +1,4 @@
+// This poject uses FastLED library (http://fastled.io/) on MIT License
 #include <Arduino.h>
 #include <FastLED.h>
 
