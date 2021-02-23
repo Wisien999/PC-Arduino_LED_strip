@@ -1,0 +1,13 @@
+<RCC>
+  <qresource prefix="white_icons">
+    <file>customized/white_arrow_down3.png</file>
+    <file>customized/white_brush-icon.png</file>
+    <file>customized/black_arrow_down.png</file>
+    <file>customized/white_arrow_down2.png</file>
+    <file>customized/white_arrow_down.png</file>
+    <file>customized/cil-lightbulb.png</file>
+    <file>customized/cil-terminal.png</file>
+    <file>customized/list_menu_icon.png</file>
+    <file>customized/white_brush-icon.png</file>
+  </qresource>
+</RCC>
