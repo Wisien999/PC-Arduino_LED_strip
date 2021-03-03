@@ -16,6 +16,11 @@ def load_default_color(hue: QtWidgets.QDoubleSpinBox, sat: QtWidgets.QDoubleSpin
     sat.setValue(color['saturation'])
     val.setValue(color['value'])
 
+def append_color_to_command_args(args: list, color: dict):
+    args.append(color['hue'])
+    args.append(color['saturation'])
+    args.append(color['value'])
+
 
 class Effect(ABC):
     def __init__(self, place: int, summary_model: QtGui.QStandardItemModel, summary_widget: QtWidgets.QTreeView, effects_config: dict, effect_type: EffectsIDs) -> None:
@@ -69,9 +74,7 @@ class Fill_solid(Effect):
         args = []
 
         args.append(self.effect_config['last_led'])
-        args.append(self.effect_config['color']['hue'])
-        args.append(self.effect_config['color']['saturation'])
-        args.append(self.effect_config['color']['value'])
+        append_color_to_command_args(args, self.effect_config['color'])
 
         return prefix + ",".join(map(str, args))
 
@@ -137,10 +140,17 @@ class Pulsating_color(Effect):
 
         args = []
 
-        args.append()
+        args.append(self.effect_config['last_led'])
+        args.append(self.effect_config['transition_time'])
+        args.append(self.effect_config['cycle_range'])
+        args.append(self.effect_config['blur_radius'])
+        append_color_to_command_args(args, self.effect_config['color'])
+        append_color_to_command_args(args, self.effect_config['background_color'])
 
+        return prefix + ",".join(map(str, args))
 
 create_effect = {
     EffectsIDs.FILL_SOLID: Fill_solid,
-    EffectsIDs.LINEAR_COLORS: Linear_colors
+    EffectsIDs.LINEAR_COLORS: Linear_colors,
+    EffectsIDs.PULSATING_COLOR: Pulsating_color
 }

@@ -30,6 +30,8 @@
     "TRAVELING_PIXELS": {
         "last_led": 100,
         "transition_time": 600,
+        "cycle_range": 20,
+        "blur_radius": 2,
         "color": {
             "hue": 90,
             "saturation": 255,
