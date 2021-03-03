@@ -30,17 +30,17 @@
     "TRAVELING_PIXELS": {
         "last_led": 100,
         "transition_time": 600,
-        "cycle_range": 20,
+        "pixel_spacing": 20,
         "blur_radius": 2,
         "color": {
-            "hue": 90,
-            "saturation": 255,
+            "hue": 0,
+            "saturation": 200,
             "value": 255
         },
         "background_color": {
-            "hue": 90,
+            "hue": 170,
             "saturation": 255,
-            "value": 255
+            "value": 200
         }
     }
 }
