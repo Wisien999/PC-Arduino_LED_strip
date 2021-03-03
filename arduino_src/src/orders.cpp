@@ -15,7 +15,7 @@ bool get_last_led_and_transition_time(char* arg, uint8_t &last_led, int &transit
     last_led = atoi(strtok(arg, ARGUMENTS_SEPARATOR));
     transition_time = atoi(strtok(NULL, ARGUMENTS_SEPARATOR));
 
-    return true;    
+    return true;
 }
 
 
@@ -46,8 +46,6 @@ bool parse_fill_gradient(char* arg, uint8_t &last_led, uint8_t &brightness, CHSV
     last_led = atoi(strtok(arg, ARGUMENTS_SEPARATOR));
     brightness = atoi(strtok(NULL, ARGUMENTS_SEPARATOR));
 
-
-    // palette = CHSVPalette16();
 
     uint8_t hue, saturation, value;
     for(auto i = 0; i < 16; ++i)
@@ -163,10 +161,7 @@ bool do_order(Order order, char* arg, Effect*& effect, CRGB* leds)
             uint8_t brightness;
             CHSV colors[16];
 
-
             parse_fill_gradient(arg, last_led, brightness, colors);
-
-            // fill_palette((leds, last_led, 0, 15, pattern, brightness, TBlendType::LINEARBLEND);
 
             for (uint8_t i = 1; i < 16; ++i)
             {
@@ -179,6 +174,7 @@ bool do_order(Order order, char* arg, Effect*& effect, CRGB* leds)
             bool fix_colors;
             CHSV color;
             int transition_time;
+
 
             parse_linear_colors(arg, last_led, transition_time, fix_colors);
             

@@ -2,6 +2,7 @@
 #include "effects/effect.h"
 
 #include <FastLED.h>
+#include <Arduino.h>
 
 
 
@@ -19,7 +20,6 @@ Effect::Effect(CRGB* leds_arr, byte last_led_index, int _transition_time)
     else
         transition_time = DEFAULT_TRANSITION_TIME;
 
-    
     last_time = millis();
 
 }
