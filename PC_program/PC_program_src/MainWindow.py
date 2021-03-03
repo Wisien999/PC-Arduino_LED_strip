@@ -14,8 +14,9 @@ class MainWindow(QtWidgets.QMainWindow):
     def __init__(self) -> None:
         super().__init__()
 
-        self.setupUi()
+        self.power_state = False
 
+        self.setupUi()
         self.attachActions()
         self.show()
 
@@ -44,7 +45,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.effect2_summary.setWordWrap(True)
         self.effect1_summary_model = QtGui.QStandardItemModel(self.ui.effect1_summary)
         self.effect2_summary_model = QtGui.QStandardItemModel(self.ui.effect2_summary)
-        # self.effect1_summary_model.setColumnCount(2)
 
 
         self.update_available_devices()
@@ -75,16 +75,20 @@ class MainWindow(QtWidgets.QMainWindow):
             print("power is off")
             return
 
-        blend_ratio = self.ui.blend_slider.value()
         self.communication_master.send_command(f"{constances.OrdersIDs.STOP}:0:0;{constances.OrdersIDs.STOP}:1:0")
-        if hasattr(self, 'effect1') and self.ui.effect1_active:
+        effect1_uploaded = False
+        if hasattr(self, 'effect1') and self.ui.effect1_active.isChecked():
             print("uploading effect1")
             self.communication_master.send_command(self.effect1.prepare_command())
-        else:
-            blend_ratio = 255
-        if hasattr(self, 'effect2') and self.ui.effect2_active:
+            effect1_uploaded = True
+        if hasattr(self, 'effect2') and self.ui.effect2_active.isChecked():
             print("uploading effect2")
             self.communication_master.send_command(self.effect2.prepare_command())
+            
+            if effect1_uploaded:
+                blend_ratio = self.ui.blend_slider.value()
+            else:
+                blend_ratio = 255
         else:
             blend_ratio = 0
         
@@ -104,7 +108,7 @@ class MainWindow(QtWidgets.QMainWindow):
         elif place == 2:
             self.effect2_summary_model.clear()
             effect_type = self.ui.effect2_choose_combobox.currentData()
-            self.effect2 = effects.create_effect[effect_type](0, self.effect2_summary_model, self.ui.effect2_summary, effect_config, effect_type)
+            self.effect2 = effects.create_effect[effect_type](1, self.effect2_summary_model, self.ui.effect2_summary, effect_config, effect_type)
 
 
 
