@@ -1,15 +1,13 @@
 # from PySide2 import QtWidgets, QtCore, QtGui
 import json
 import sys
-from PyQt5 import QtWidgets, QtCore, QtGui, Qt
-import PyQt5
+from PyQt5 import QtWidgets, QtCore, QtGui
 
 from PC_program_src.ui import ui_MainWindow
 from PC_program_src import config
 from PC_program_src.ui import material_slider
 from PC_program_src import constances
 from PC_program_src import communication
-from PC_program_src import summary_tools
 from PC_program_src import effects
 
 class MainWindow(QtWidgets.QMainWindow):
