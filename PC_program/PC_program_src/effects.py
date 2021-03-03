@@ -46,8 +46,8 @@ class Effect(ABC):
 
 
 class Fill_solid(Effect):
-    def __init__(self, summary_model: QtGui.QStandardItemModel, summary_widget: QtWidgets.QTreeView, effects_config: dict, effect_type: EffectsIDs) -> None:
-        super().__init__(summary_model, summary_widget, effects_config, effect_type)
+    def __init__(self, place: int, summary_model: QtGui.QStandardItemModel, summary_widget: QtWidgets.QTreeView, effect_config: dict, effect_type: EffectsIDs) -> None:
+        super().__init__(place, summary_model, summary_widget, effect_config, effect_type)
 
     def make_summary(self):
         # Create summary items and configuration widgets
@@ -163,7 +163,7 @@ class Traveling_pixels(Effect):
 
         args.append(self.effect_config['last_led'])
         args.append(self.effect_config['transition_time'])
-        args.append(self.effect_config['cycle_range'])
+        args.append(self.effect_config['pixel_spacing'])
         args.append(self.effect_config['blur_radius'])
         append_color_to_command_args(args, self.effect_config['color'])
         append_color_to_command_args(args, self.effect_config['background_color'])
