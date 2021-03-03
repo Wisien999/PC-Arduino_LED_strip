@@ -8,7 +8,7 @@ from PC_program_src.ui import ui_MainWindow
 from PC_program_src import config
 from PC_program_src.ui import material_slider
 from PC_program_src import constances
-from PC_program_src import comunication
+from PC_program_src import communication
 from PC_program_src import summary_tools
 from PC_program_src import effects
 
@@ -22,7 +22,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.show()
 
         if len(self.available_usb_ports) > 0:
-            self.communication_master = comunication.Serial_comunication(self.available_usb_ports[0])
+            self.communication_master = communication.Serial_comunication(self.available_usb_ports[0])
 
 
     def setupUi(self):
@@ -67,7 +67,7 @@ class MainWindow(QtWidgets.QMainWindow):
         if not hasattr(self, 'communication_master'):
             print("creating com master")
             port = self.ui.usb_port_list.currentText()
-            self.communication_master = comunication.Serial_comunication(port)
+            self.communication_master = communication.Serial_comunication(port)
         
         if not self.power_state:
             print("power is off")
@@ -121,7 +121,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     @QtCore.pyqtSlot()
     def update_available_devices(self):
-        self.available_usb_ports = comunication.list_serial_ports()
+        self.available_usb_ports = communication.list_serial_ports()
         self.ui.usb_port_list.addItems(self.available_usb_ports)
 
 

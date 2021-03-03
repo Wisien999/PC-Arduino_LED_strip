@@ -1,4 +1,3 @@
-from typing import get_args
 from PC_program_src import summary_tools
 from PC_program_src.constances import EffectsIDs
 from PC_program_src import config
@@ -11,6 +10,11 @@ def set_last_led(effect_config, value):
 
 def set_property(ef_property, value, effect_config):
     effect_config[ef_property] = value
+
+def load_default_color(hue: QtWidgets.QDoubleSpinBox, sat: QtWidgets.QDoubleSpinBox, val: QtWidgets.QDoubleSpinBox, color: dict):
+    hue.setValue(color['hue'])
+    sat.setValue(color['saturation'])
+    val.setValue(color['value'])
 
 
 class Effect(ABC):
@@ -40,16 +44,16 @@ class Fill_solid(Effect):
         super().__init__(summary_model, summary_widget, effects_config, effect_type)
 
     def make_summary(self):
+        # Create summary items and configuration widgets
         # last_led_widget = summary_tools._CREATE_ITEM_WITH_NUMBER("Last led:", config.NUM_OF_LEDS, self.summary_model.invisibleRootItem(), self.summary_model, self.summary_widget)
         last_led_widget = summary_tools.CREATE_LAST_LED_ITEM(self.summary_model, self.summary_widget)
         hue, sat, val = summary_tools.CREATE_ITEM_WITH_COLOR("Color:", self.summary_model.invisibleRootItem(), self.summary_model, self.summary_widget)
 
-        # Update logical configuration (self.effect_config) on visible ones change
+        # Visualize default effect configuration
         last_led_widget.setValue(self.effect_config.get('last_led'))
-        hue.setValue(self.effect_config.get('color').get('hue'))
-        sat.setValue(self.effect_config.get('color').get('saturation'))
-        val.setValue(self.effect_config.get('color').get('value'))
+        load_default_color(hue, sat, val, self.effect_config['color'])
 
+        # Update logical configuration (self.effect_config) on visible ones change
         last_led_widget.valueChanged.connect(lambda: set_last_led(self.effect_config, int(last_led_widget.value())))
 
         def set_color_prop(prop, prop_src):
@@ -78,11 +82,18 @@ class Linear_colors(Effect):
     
 
     def make_summary(self):
+        # Create summary items and configuration widgets
         last_led_widget = summary_tools.CREATE_LAST_LED_ITEM(self.summary_model, self.summary_widget)
         transition_time_widget = summary_tools.CREATE_TRANSITION_TIME_ITEM(self.summary_model, self.summary_widget)
 
         root = self.summary_model.invisibleRootItem()
         change_colors_each_cycle_widget = summary_tools.CREATE_ITEM_WITH_CHECKBOX("Sliightly change colors each cycle:", root, self.summary_model, self.summary_widget)
+        
+        # Visualize default effect configuration
+        last_led_widget.setValue(self.effect_config['last_led'])
+        transition_time_widget.setValue(self.effect_config['transition_time'])
+        change_colors_each_cycle_widget.setChecked(not self.effect_config['fix_colors'])
+
 
         # Update logical configuration (self.effect_config) on visible ones change
         last_led_widget.valueChanged.connect(lambda: set_last_led(self.effect_config, int(last_led_widget.value())))
@@ -107,13 +118,26 @@ class Pulsating_color(Effect):
 
     
     def make_summary(self):
+        # Create summary items and configuration widgets
         last_led_widget = summary_tools.CREATE_LAST_LED_ITEM(self.summary_model, self.summary_widget)
         transition_time_widget = summary_tools.CREATE_TRANSITION_TIME_ITEM(self.summary_model, self.summary_widget)
         
         color1_hue, color1_sat, color1_val = summary_tools.CREATE_ITEM_WITH_COLOR("Traveling pixel color:", self.summary_model.invisibleRootItem(), self.summary_model, self.summary_widget)
         color2_hue, color2_sat, color2_val = summary_tools.CREATE_ITEM_WITH_COLOR("Background color", self.summary_model.invisibleRootItem(), self.summary_model, self.summary_widget)
+        
+        # Visualize default effect configuration
+        last_led_widget.setValue(self.effect_config.get('last_led'))
+        transition_time_widget.setValue(self.effect_config['transition_time'])
+        load_default_color(color1_hue, color1_sat, color1_val, self.effect_config['color'])
+        load_default_color(color2_hue, color2_sat, color2_val, self.effect_config['background_color'])
 
+    
+    def prepare_command(self):
+        prefix = super().prepare_command()
 
+        args = []
+
+        args.append()
 
 
 create_effect = {

@@ -1,0 +1,44 @@
+{
+    "FILL_SOLID": {
+        "last_led": 100,
+        "color": {
+            "hue": 90,
+            "saturation": 255,
+            "value": 255
+        }
+    },
+    "LINEAR_COLORS": {
+        "last_led": 100,
+        "transition_time": 400,
+        "fix_colors": false
+    },
+    "PULSATING_COLOR": {
+        "last_led": 100,
+        "transition_time": 600,
+        "brightness_transition_type": "CUBICWAVE",
+        "color": {
+            "hue": 90,
+            "saturation": 255,
+            "value": 255
+        }
+    },
+    "PULSATING_COLORS": {
+        "last_led": 100,
+        "transition_time": 600,
+        "brightness_transition_type": "CUBICWAVE"
+    },
+    "TRAVELING_PIXELS": {
+        "last_led": 100,
+        "transition_time": 600,
+        "color": {
+            "hue": 90,
+            "saturation": 255,
+            "value": 255
+        },
+        "background_color": {
+            "hue": 90,
+            "saturation": 255,
+            "value": 255
+        }
+    }
+}
