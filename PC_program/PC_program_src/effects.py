@@ -23,13 +23,13 @@ def append_color_to_command_args(args: list, color: dict):
 
 
 class Effect(ABC):
-    def __init__(self, place: int, summary_model: QtGui.QStandardItemModel, summary_widget: QtWidgets.QTreeView, effects_config: dict, effect_type: EffectsIDs) -> None:
+    def __init__(self, place: int, summary_model: QtGui.QStandardItemModel, summary_widget: QtWidgets.QTreeView, effect_config: dict, effect_type: EffectsIDs) -> None:
         super().__init__()
 
         self.effect_type = effect_type
         self.place = place
-        self.effect_config = effects_config[effect_type.name]
         # self.effect_config = effects_config[effect_type.name]
+        self.effect_config = effect_config
         self.summary_model = summary_model
         self.summary_widget = summary_widget
 

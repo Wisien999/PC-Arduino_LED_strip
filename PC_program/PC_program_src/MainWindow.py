@@ -21,6 +21,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.attachActions()
         self.show()
 
+        with open("PC_program_src/program_config/effects_defaults.json", "r") as default_effects_config_file:
+            self.default_effects_config = json.load(default_effects_config_file)
+
         if len(self.available_usb_ports) > 0:
             self.communication_master = communication.Serial_comunication(self.available_usb_ports[0])
 
@@ -58,7 +61,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.refresh_usb_portsButton.clicked.connect(self.update_available_devices)
         self.ui.onOffButton.toggled.connect(lambda power: self.toggle_LEDS_power(power))
 
-        self.ui.effect1_choose_combobox.currentIndexChanged.connect(lambda: self.show_summary(self.ui.effect1_choose_combobox.currentData()))
+        self.ui.effect1_choose_combobox.currentIndexChanged.connect(lambda: self.create_effect_and_show_summary(self.ui.effect1_choose_combobox.currentData(), 1))
+        self.ui.effect2_choose_combobox.currentIndexChanged.connect(lambda: self.create_effect_and_show_summary(self.ui.effect2_choose_combobox.currentData(), 2))
 
         self.ui.applyButton.clicked.connect(self.upload_effects)
     
@@ -92,16 +96,18 @@ class MainWindow(QtWidgets.QMainWindow):
     
 
     @QtCore.pyqtSlot()
-    def show_summary(self, effect):
-        self.effect1_summary_model.clear()
-        with open("PC_program_src/default_effects_config/linear_colors.json", "r") as default_effects_config_file:
-            default_effects_config = json.load(default_effects_config_file)
+    def create_effect_and_show_summary(self, effect, place):
+        effect_config = self.default_effects_config[effect.name].copy()
+    
+        if place == 1:
+            self.effect1_summary_model.clear()
+            effect_type = self.ui.effect1_choose_combobox.currentData()
+            self.effect1 = effects.create_effect[effect_type](0, self.effect1_summary_model, self.ui.effect1_summary, effect_config, effect_type)
+        elif place == 2:
+            self.effect2_summary_model.clear()
+            effect_type = self.ui.effect2_choose_combobox.currentData()
+            self.effect2 = effects.create_effect[effect_type](0, self.effect2_summary_model, self.ui.effect2_summary, effect_config, effect_type)
 
-        effect_config = default_effects_config[effect.name].copy()
-        effect_type = self.ui.effect1_choose_combobox.currentData()
-
-        self.effect1 = effects.create_effect[effect_type](0, self.effect1_summary_model, self.ui.effect1_summary, default_effects_config, effect_type)
-        # self.effect2 = effects.create_effect[effect_type](1, self.effect2_summary_model, self.ui.effect2_summary, default_effects_config, effect_type)
 
 
 
@@ -144,10 +150,8 @@ class MainWindow(QtWidgets.QMainWindow):
         menu = self.ui.menu_bar_frame
 
         if menu.width() == config.LEFT_MENU_BAR_CONTRACTED_WIDTH:
-            # print("jest wsunięte")
             new_width = config.LEFT_MENU_BAR_EXPANDED_WIDH
         else:
-            # print("jest wysunięte")
             new_width = config.LEFT_MENU_BAR_CONTRACTED_WIDTH
 
         # menu.setMaximumWidth(new_width)
