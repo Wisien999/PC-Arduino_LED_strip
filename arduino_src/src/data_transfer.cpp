@@ -1,19 +1,19 @@
 #include <Arduino.h>
 #include "helpers.h"
 #include "structures.h"
+#include "config.h"
 
-#define INPUT_SIZE 200
+char input[INPUT_SIZE + 1];
 
 bool check_for_orders(Order& cmd, char *val, uint8_t& place)
 {
     if (Serial.available() > 0)
     {
-        char input[INPUT_SIZE + 1];
-
         // Read input from Serial until ; what means command has ended
         byte size = Serial.readBytesUntil(';', input, INPUT_SIZE);
         input[size] = 0; // Add null terminator
 
+        Serial.print("Info: Command recived!|");
         Serial.println(input);
 
         // Check if command is not empty

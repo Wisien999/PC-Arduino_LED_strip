@@ -18,24 +18,22 @@ uint8_t blend_ratio=0;
 
 Effect* program[2];
 
+char val[INPUT_SIZE];
 
 void setup()
 {
   pinMode(UNUSED_ANALOG_PIN, INPUT); // prepare for random seed generation
   randomSeed(analogRead(UNUSED_ANALOG_PIN)); // randomize random()
 
-  Serial.begin(9600);
+  Serial.begin(4800);
 
   FastLED.addLeds<LED_TYPE, LED_PIN, GRB>(leds, NUM_LEDS).setCorrection(TypicalLEDStrip);
-
-
 
 }
 
 
 void loop()
 {
-  char *val = "val\0";
   Order order;
   uint8_t place;
   if (check_for_orders(order, val, place))
@@ -68,7 +66,5 @@ void loop()
 
   blend(pattern[0], pattern[1], leds, NUM_LEDS, blend_ratio);
   FastLED.show();
-  // if (millis() %10 == 0)
-  // Serial.println(leds[0].b);
 }
 

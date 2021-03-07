@@ -3,10 +3,10 @@
 
 
 
-#define NUM_LEDS 5
-#define LED_PIN 12
+#define NUM_LEDS 100
+#define LED_PIN 2
 
-#define MAX_BRIGHTNESS 200
+#define MAX_BRIGHTNESS 255
 #define DEFAULT_TRANSITION_TIME 500
 #define START_LED 0
 
@@ -14,7 +14,7 @@
 
 #define LED_TYPE WS2812
 #define ARGUMENTS_SEPARATOR ","
-
+#define INPUT_SIZE 180
 
 
 
