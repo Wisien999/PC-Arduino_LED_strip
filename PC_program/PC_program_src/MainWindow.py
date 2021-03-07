@@ -10,6 +10,7 @@ from PC_program_src import constances
 from PC_program_src import communication
 from PC_program_src import effects
 
+
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self) -> None:
         super().__init__()
@@ -65,24 +66,24 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.applyButton.clicked.connect(self.upload_effects)
     
 
+    @QtCore.pyqtSlot()
     def upload_effects(self):
+        if not self.power_state:
+            return
+
         if not hasattr(self, 'communication_master'):
-            print("creating com master")
             port = self.ui.usb_port_list.currentText()
             self.communication_master = communication.Serial_comunication(port)
-        
-        if not self.power_state:
-            print("power is off")
-            return
 
         self.communication_master.send_command(f"{constances.OrdersIDs.STOP}:0:0;{constances.OrdersIDs.STOP}:1:0")
         effect1_uploaded = False
+        # this if-statement nightmare basically means: if only effect1 active then blending ratio is 0
+        # if only effect2 active then blending ratio is 255
+        # else: user defined
         if hasattr(self, 'effect1') and self.ui.effect1_active.isChecked():
-            print("uploading effect1")
             self.communication_master.send_command(self.effect1.prepare_command())
             effect1_uploaded = True
         if hasattr(self, 'effect2') and self.ui.effect2_active.isChecked():
-            print("uploading effect2")
             self.communication_master.send_command(self.effect2.prepare_command())
             
             if effect1_uploaded:
@@ -105,10 +106,12 @@ class MainWindow(QtWidgets.QMainWindow):
             self.effect1_summary_model.clear()
             effect_type = self.ui.effect1_choose_combobox.currentData()
             self.effect1 = effects.create_effect[effect_type](0, self.effect1_summary_model, self.ui.effect1_summary, effect_config, effect_type)
+            self.ui.effect1_summary.setColumnWidth(0, 220)
         elif place == 2:
             self.effect2_summary_model.clear()
             effect_type = self.ui.effect2_choose_combobox.currentData()
             self.effect2 = effects.create_effect[effect_type](1, self.effect2_summary_model, self.ui.effect2_summary, effect_config, effect_type)
+            self.ui.effect2_summary.setColumnWidth(0, 220)
 
 
 
