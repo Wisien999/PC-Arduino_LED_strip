@@ -633,7 +633,7 @@ border-left: 2px solid red;</string>
                           <string notr="true">color: #fff;</string>
                          </property>
                          <property name="text">
-                          <string>Efekt nr 1</string>
+                          <string>1st effect</string>
                          </property>
                         </widget>
                        </item>
@@ -960,10 +960,39 @@ background-color: #008AB0;
                         </widget>
                        </item>
                        <item>
-                        <widget class="QListView" name="effect1_summary">
-                         <property name="spacing">
-                          <number>2</number>
+                        <widget class="QTreeView" name="effect1_summary">
+                         <property name="styleSheet">
+                          <string notr="true">QTreeView {
+color: white;
+}
+
+QTreeView::item
+{
+text-align: right;
+	font: 63 11pt &quot;URW Gothic&quot;;
+}
+
+QCheckBox {
+	float: right;
+}
+
+QDoubleSpinBox {
+color: white;
+min-width: 50px;
+}
+QComboBox {
+color: white;
+}
+QCheckBox {
+color: white;
+}</string>
                          </property>
+                         <property name="wordWrap">
+                          <bool>true</bool>
+                         </property>
+                         <attribute name="headerVisible">
+                          <bool>false</bool>
+                         </attribute>
                         </widget>
                        </item>
                       </layout>
@@ -987,7 +1016,7 @@ background-color: #008AB0;
                           <string notr="true">color: #fff;</string>
                          </property>
                          <property name="text">
-                          <string>Efekt nr 1</string>
+                          <string>2nd effect</string>
                          </property>
                         </widget>
                        </item>
@@ -1314,10 +1343,39 @@ background-color: #008AB0;
                         </widget>
                        </item>
                        <item>
-                        <widget class="QListView" name="effect2_summary">
-                         <property name="spacing">
-                          <number>2</number>
+                        <widget class="QTreeView" name="effect2_summary">
+                         <property name="styleSheet">
+                          <string notr="true">QTreeView {
+color: white;
+}
+
+QTreeView::item
+{
+text-align: right;
+	font: 63 11pt &quot;URW Gothic&quot;;
+}
+
+QCheckBox {
+	float: right;
+}
+
+QDoubleSpinBox {
+color: white;
+min-width: 50px;
+}
+QComboBox {
+color: white;
+}
+QCheckBox {
+color: white;
+}</string>
                          </property>
+                         <property name="wordWrap">
+                          <bool>true</bool>
+                         </property>
+                         <attribute name="headerVisible">
+                          <bool>false</bool>
+                         </attribute>
                         </widget>
                        </item>
                       </layout>
@@ -1468,7 +1526,7 @@ background-color: #008AB0;
                        </palette>
                       </property>
                       <property name="text">
-                       <string>Efekt nr 1</string>
+                       <string>1st effect</string>
                       </property>
                      </widget>
                     </item>
@@ -1606,7 +1664,7 @@ background-color: #008AB0;
                        </palette>
                       </property>
                       <property name="text">
-                       <string>Efekt nr 2</string>
+                       <string>2nd effect</string>
                       </property>
                      </widget>
                     </item>
