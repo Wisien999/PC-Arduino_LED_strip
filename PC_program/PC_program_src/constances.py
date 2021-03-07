@@ -19,7 +19,7 @@ class OrdersIDs(IntEnum):
     PULSATING_COLORS=14
     TRAVELING_PIXELS=15
 
-class Transition_function(IntEnum):
+class Transition_functionsIDs(IntEnum):
     TRIWAVE=0
     CUBICWAVE=1
     QUADWAVE=2

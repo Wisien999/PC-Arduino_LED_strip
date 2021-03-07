@@ -109,6 +109,21 @@ def update_color(hue: str, sat: str, val: str, item: QtGui.QStandardItem) -> Non
     item.setIcon(QtGui.QIcon(pixmap))
     
 
+def CREATE_ITEM_WITH_GRADIENT(name: str, parent_item: QtGui.QStandardItem, summary_model: QtGui.QStandardItemModel, summary_widget: QtWidgets.QTreeView):
+    left_column = QtGui.QStandardItem(name)
+    right_column = QtGui.QStandardItem()
+    right_column.setTextAlignment(QtCore.Qt.AlignRight)
+    parent_item.appendRow([left_column, right_column])
+
+    summary_widget.setModel(summary_model)
+
+    colors = [CREATE_ITEM_WITH_COLOR(f"Color no. {i}", left_column, summary_model, summary_widget) for i in range(1, 16+1)]
+
+    return colors
+
+
+
+
 def CREATE_LAST_LED_ITEM(summary_model: QtGui.QStandardItemModel, summary_widget: QtWidgets.QTreeView) -> QtWidgets.QDoubleSpinBox:
     return CREATE_ITEM_WITH_NUMBER("Last led:", config.NUM_OF_LEDS, summary_model.invisibleRootItem(), summary_model, summary_widget)
 
