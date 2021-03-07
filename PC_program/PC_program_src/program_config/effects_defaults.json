@@ -7,6 +7,91 @@
             "value": 255
         }
     },
+    "FILL_GRADIENT": {
+        "last_led": 100,
+        "gradient": {
+            "color0": {
+                "hue": 0,
+                "saturation": 255,
+                "value": 255
+            },
+            "color1": {
+                "hue": 0,
+                "saturation": 255,
+                "value": 255
+            },
+            "color2": {
+                "hue": 0,
+                "saturation": 255,
+                "value": 255
+            },
+            "color3": {
+                "hue": 0,
+                "saturation": 255,
+                "value": 255
+            },
+            "color4": {
+                "hue": 0,
+                "saturation": 255,
+                "value": 255
+            },
+            "color5": {
+                "hue": 0,
+                "saturation": 255,
+                "value": 255
+            },
+            "color6": {
+                "hue": 0,
+                "saturation": 255,
+                "value": 255
+            },
+            "color7": {
+                "hue": 160,
+                "saturation": 255,
+                "value": 255
+            },
+            "color8": {
+                "hue": 0,
+                "saturation": 255,
+                "value": 100
+            },
+            "color9": {
+                "hue": 0,
+                "saturation": 255,
+                "value": 0
+            },
+            "color10": {
+                "hue": 0,
+                "saturation": 255,
+                "value": 0
+            },
+            "color11": {
+                "hue": 150,
+                "saturation": 255,
+                "value": 200
+            },
+            "color12": {
+                "hue": 0,
+                "saturation": 255,
+                "value": 255
+            },
+            "color13": {
+                "hue": 0,
+                "saturation": 255,
+                "value": 0
+            },
+            "color14": {
+                "hue": 0,
+                "saturation": 255,
+                "value": 0
+            },
+            "color15": {
+                "hue": 0,
+                "saturation": 255,
+                "value": 0
+            }
+        }
+    },
     "LINEAR_COLORS": {
         "last_led": 100,
         "transition_time": 400,
