@@ -415,13 +415,33 @@ class Ui_MainWindow(object):
         self.horizontalLayout_9.addWidget(self.effect1_customizeButton)
         self.verticalLayout_7.addWidget(self.effect1_choose_frame)
         self.effect1_summary = QtWidgets.QTreeView(self.effect1_frame_2)
-        self.effect1_summary.setStyleSheet("QTreeView::item\n"
+        self.effect1_summary.setStyleSheet("QTreeView {\n"
+"color: white;\n"
+"}\n"
+"\n"
+"QTreeView::item\n"
 "{\n"
 "text-align: right;\n"
+"    font: 63 11pt \"URW Gothic\";\n"
+"}\n"
+"\n"
+"QCheckBox {\n"
+"    float: right;\n"
+"}\n"
+"\n"
+"QDoubleSpinBox {\n"
+"color: white;\n"
+"min-width: 50px;\n"
+"}\n"
+"QComboBox {\n"
+"color: white;\n"
 "}\n"
 "QCheckBox {\n"
-"float: right; }")
+"color: white;\n"
+"}")
+        self.effect1_summary.setWordWrap(True)
         self.effect1_summary.setObjectName("effect1_summary")
+        self.effect1_summary.header().setVisible(False)
         self.verticalLayout_7.addWidget(self.effect1_summary)
         self.horizontalLayout_8.addWidget(self.effect1_frame_2)
         self.effect2_frame = QtWidgets.QFrame(self.effects_frame)
@@ -585,7 +605,33 @@ class Ui_MainWindow(object):
         self.horizontalLayout_10.addWidget(self.effect2_customizeButton)
         self.verticalLayout_8.addWidget(self.effect2_choose_frame)
         self.effect2_summary = QtWidgets.QTreeView(self.effect2_frame)
+        self.effect2_summary.setStyleSheet("QTreeView {\n"
+"color: white;\n"
+"}\n"
+"\n"
+"QTreeView::item\n"
+"{\n"
+"text-align: right;\n"
+"    font: 63 11pt \"URW Gothic\";\n"
+"}\n"
+"\n"
+"QCheckBox {\n"
+"    float: right;\n"
+"}\n"
+"\n"
+"QDoubleSpinBox {\n"
+"color: white;\n"
+"min-width: 50px;\n"
+"}\n"
+"QComboBox {\n"
+"color: white;\n"
+"}\n"
+"QCheckBox {\n"
+"color: white;\n"
+"}")
+        self.effect2_summary.setWordWrap(True)
         self.effect2_summary.setObjectName("effect2_summary")
+        self.effect2_summary.header().setVisible(False)
         self.verticalLayout_8.addWidget(self.effect2_summary)
         self.horizontalLayout_8.addWidget(self.effect2_frame)
         self.verticalLayout_6.addWidget(self.effects_frame)
@@ -930,12 +976,12 @@ class Ui_MainWindow(object):
         self.effectsButton.setText(_translate("MainWindow", "Effects"))
         self.paintButton.setText(_translate("MainWindow", "Paint"))
         self.commandsButton.setText(_translate("MainWindow", "Commands"))
-        self.effect1_active.setText(_translate("MainWindow", "Efekt nr 1"))
+        self.effect1_active.setText(_translate("MainWindow", "1st effect"))
         self.effect1_customizeButton.setText(_translate("MainWindow", "Customize"))
-        self.effect2_active.setText(_translate("MainWindow", "Efekt nr 1"))
+        self.effect2_active.setText(_translate("MainWindow", "2nd effect"))
         self.effect2_customizeButton.setText(_translate("MainWindow", "Customize"))
-        self.effect1_blend_label.setText(_translate("MainWindow", "Efekt nr 1"))
-        self.effect2_blend_label.setText(_translate("MainWindow", "Efekt nr 2"))
+        self.effect1_blend_label.setText(_translate("MainWindow", "1st effect"))
+        self.effect2_blend_label.setText(_translate("MainWindow", "2nd effect"))
         self.label.setText(_translate("MainWindow", "TextLabel"))
         self.refresh_usb_portsButton.setText(_translate("MainWindow", "Refresh"))
         self.applyButton.setText(_translate("MainWindow", "Apply"))
